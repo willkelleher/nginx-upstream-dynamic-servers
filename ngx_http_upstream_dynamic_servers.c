@@ -548,7 +548,7 @@ end:
             refresh_in = 1000;
         }
 
-        ngx_log_debug(NGX_LOG_DEBUG_CORE, ctx->resolver->log, 0, "upstream-dynamic-servers: Refreshing DNS of '%V' in %ims", &ctx->name, refresh_in);
+        ngx_log_debug(NGX_LOG_ERR, ctx->resolver->log, 0, "upstream-dynamic-servers: Refreshing DNS of '%V' in %ims", &ctx->name, refresh_in);
     }
 
     ngx_resolve_name_done(ctx);
@@ -558,7 +558,7 @@ end:
         return;
     }
 
-    ngx_add_timer(&dynamic_server->timer, 1000);
+    ngx_add_timer(&dynamic_server->timer, 10000);
 }
 
 // Copied from src/core/ngx_resolver.c (nginx version 1.7.7).
